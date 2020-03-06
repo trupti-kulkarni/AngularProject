@@ -1,0 +1,34 @@
+.users{
+    height: 200vh;
+}
+.mat-card-subtitle{
+    margin-top:2% !important;
+    position: relative;
+    left: 9%;
+    font-size: large;
+    font-weight: 400;
+    color: #3f51b5;
+}
+
+.mat-card-content{
+    position: relative;
+    left: 9%;
+  
+}
+.mat-card{
+    position: relative;
+    height: 100%;
+}
+.cardContent{
+        font-size: medium;
+        
+    }
+
+.mat-card-footer{
+    margin-top:4%;
+}
+.footer-content{
+    position: relative;
+    top: 2em;
+}
+

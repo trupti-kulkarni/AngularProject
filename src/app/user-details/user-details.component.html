@@ -1,0 +1,40 @@
+<mat-drawer-container class="users" *ngIf="users">
+    <mat-drawer mode='side' opened> 
+        <mat-action-list>
+            <button #mat1   mat-list-item *ngFor="let user of users" (click)="loadUser(user)">
+                
+                <span  >{{user.username}}</span>
+            
+            </button>
+            
+          </mat-action-list>    
+    
+    </mat-drawer>
+    <mat-drawer-content >
+       <mat-card>
+        <mat-card-title>
+            {{selectedUser.username}}
+        </mat-card-title>
+        <mat-card-subtitle>
+            User Details :
+        </mat-card-subtitle>
+        <mat-card-content>
+            <p class="cardContent"> Company Name:  {{selectedUser.company.name}} </p> <br>
+            <p class="cardContent">Address: {{selectedUser.address.city}}</p> <br>
+             <p class="cardContent"> Company: {{selectedUser.company.name}}</p> <br>
+             <p class="cardContent"> Email: {{selectedUser.email}} </p> <br>
+             <p class="cardContent"> Phone: {{selectedUser.phone }}</p>
+             
+        </mat-card-content>
+            <a href={{selectedUser.website}} class="footer-content"> {{selectedUser.website}}</a>
+        <mat-card-footer>
+
+        </mat-card-footer>
+
+           
+       
+       </mat-card>
+
+    </mat-drawer-content>
+
+</mat-drawer-container>
