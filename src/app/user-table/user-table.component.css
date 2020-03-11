@@ -1,38 +1,20 @@
-/* td{
-    max-width: 200wh;
-    margin: 1px;
-    word-wrap: break-word !important;
-    word-break: break-all !important;
-} */
-td {
-    cursor: pointer;
-}
-
-.wrapWord{
-    word-wrap: break-word !important;
-    padding: 2px;
-}
-
-
-.mat-cell{
-    width: 10%;
-}    
-/* table{
-  position: fixed;
-  height: 80vh;
-}                */
-
-/* .mat-paginator{
+.displayTable{
+    height: 90%;
     
-    bottom: 2vh;
-    left: 50vw;
-    scroll-behavior: smooth;
-} */
-.mat-form-field{
-    left: 2vw;
+    display: flex;
+    flex-direction: column;
+    /* flex-flow: column wrap; */
+    overflow: auto;
+    
+  
 }
-.spinner{
-    position: fixed;
-    left: 50%;
-    top: 50%;
+
+td{
+ cursor: pointer;    
+}
+.filter{
+    /* justify-self: start; */
+   align-self: flex-start; 
+   margin-left: 1em;
+    
 }

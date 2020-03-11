@@ -31,6 +31,7 @@ export class UserTableComponent implements OnInit {
    }
   ngOnInit(){
 
+  
     
     this.getUser.fetchUser()
     .subscribe(
@@ -66,6 +67,7 @@ export class UserTableComponent implements OnInit {
     
     console.log(row);
    // this.getUser.selectedUser.next(row);
+   this.getUser.activeIndexLink.next(0);
     this.router.navigate(['/userDetails/'+row.id] )
   }
 

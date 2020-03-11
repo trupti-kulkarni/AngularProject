@@ -14,19 +14,19 @@
     
             <mat-label for="Email"> Email</mat-label>
             <input matInput placeholder="Enter Rgistered Email" formControlName="email">
-            <br>
-            <span *ngIf="!userForm.get('email').valid && userForm.get('email').touched " class="help-block">Pease Enter valid email</span>
         
         </mat-form-field>
+        <span *ngIf="!userForm.get('email').valid && userForm.get('email').touched " class="help-block">Pease Enter valid email</span>
         <br>
     
         <mat-form-field appearance='standard'>
     
             <mat-label for="Phone"> Phone</mat-label>
             <input matInput placeholder="Enter Phone Number" formControlName="phone">
-            <span *ngIf="!userForm.get('phone').valid && userForm.get('phone').touched " class="help-block">Pease Enter valid Phone Number</span>
+           
         
         </mat-form-field>
+        <span *ngIf="!userForm.get('phone').valid && userForm.get('phone').touched " class="help-block">Pease Enter valid Phone Number</span>
         <br>
     
         <mat-accordion>
@@ -39,20 +39,24 @@
                   Enter Address
                 </mat-panel-description>
               </mat-expansion-panel-header>
-          
+
               <mat-form-field>
-                <mat-label>Street</mat-label>
-                <input matInput type="text" formControlName="street">
+                <mat-label>State</mat-label>
+                <input matInput type="text" formControlName="state" (keyup)="this.userForm.controls['city'].enable()">
               </mat-form-field>
           
               <mat-form-field>
                 <mat-label>City</mat-label>
-                <input matInput type="text" formControlName="city">
+                <input matInput type="text" formControlName="city" (keyup)="this.userForm.controls['street'].enable()" >
               </mat-form-field>
+
               <mat-form-field>
-                <mat-label>State</mat-label>
-                <input matInput type="text" formControlName="state">
+                <mat-label>Street</mat-label>
+                <input matInput type="text" formControlName="street"  >
               </mat-form-field>
+          
+             
+             
               <mat-form-field>
                 <mat-label>zipcode</mat-label>
                 <input matInput type="text" formControlName="zipcode">

@@ -24,7 +24,7 @@
     User Details
     </a> -->
 
-  <a mat-tab-link *ngFor="let link of navLinks" [routerLink]="link.link" routerLinkActive #rla="routerLinkActive"
+  <a mat-tab-link *ngFor="let link of navLinks" [ngStyle]="{'border-bottom':activeLinkIndex==link.index?'3px solid #3f51b5':'none'}"[routerLink]="link.link" (click)="setActiveIndex(link)" routerLinkActive #rla="routerLinkActive"
     [active]="rla.isActive">
     {{link.label}}
   </a>

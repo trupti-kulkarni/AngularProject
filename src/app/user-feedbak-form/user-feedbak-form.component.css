@@ -1,27 +1,27 @@
 .feedbackForm{
-    position: relative;
+    /* position: relative;
     height: 75%;
     Margin:2%;
     overflow-y: auto;
-   overflow-x: hidden;
-}
-
-mat-expansion-panel{
-    width: 40%;
-}
-
-.feedbackForm{
-    border:1px solid gray;
-
+   overflow-x: hidden; */
+   display: flex;
+   flex-flow: column wrap;
+   align-content: center;
+   margin-top: 2em;
+   overflow: auto;
+   
 }
 form{
-    margin: 2%;
-    position: relative;
-    left: 10%;
+    
+    border: 1px solid gray;
+    
 }
 mat-form-field{
-    position: relative;
- width: 40%;
+    margin: 1%;
+}
+
+ mat-expansion-panel{
+    width: 80%;
 }
 
 button {
@@ -29,11 +29,15 @@ button {
     background-color: #3f51b5;
     color: white;
 }
+
 mat-action-list{
     overflow: auto;
-}
+} 
 
 button[disabled]{
     color: white !important;
     background-color: gray;
+}
+span{
+    margin: 1%;
 }

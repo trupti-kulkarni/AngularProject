@@ -1,7 +1,7 @@
 <mat-drawer-container class="users" *ngIf="users">
     <mat-drawer mode='side' opened> 
         <mat-action-list>
-            <button #mat1   mat-list-item *ngFor="let user of users" (click)="loadUser(user)">
+            <button [ngStyle]="{'background-color':user.name==selectedUser.name?'lightgrey':'transparent'}"  mat-list-item *ngFor="let user of users" (click)="loadUser(user)">
                 
                 <span  >{{user.username}}</span>
             
@@ -26,9 +26,9 @@
              <p class="cardContent"> Phone: {{selectedUser.phone }}</p>
              
         </mat-card-content>
-            <a href={{selectedUser.website}} class="footer-content"> {{selectedUser.website}}</a>
+            
         <mat-card-footer>
-
+            <a href={{selectedUser.website}} class="footer-content"> {{selectedUser.website}}</a>
         </mat-card-footer>
 
            

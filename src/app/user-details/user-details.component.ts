@@ -17,8 +17,6 @@ export class UserDetailsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    
-
     this.getUsers.fetchUser().subscribe(
 
       (response) => {
@@ -60,7 +58,7 @@ export class UserDetailsComponent implements OnInit {
   loadUser(user) {
    // console.log("user ", user.name, "is loaded");
     //console.log(document.getElementById(user.username));
-   
+    this.getUsers.activeIndexLink.next(0);
     this.router.navigate(['/userDetails', user.id]);
   }
 

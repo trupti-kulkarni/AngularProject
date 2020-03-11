@@ -11,7 +11,7 @@ export class GetUserService {
    url='https://jsonplaceholder.typicode.com/users'
  
    // selectedUser=new BehaviorSubject <any>(null);
-
+   activeIndexLink= new BehaviorSubject<any> (-1);
   constructor( private http : HttpClient) { }
 
   fetchUser(){
