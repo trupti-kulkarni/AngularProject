@@ -1,0 +1,8 @@
+div{
+    overflow-y: auto;
+}
+@media only screen and (max-width: 500px) {
+    div {
+      font-size: small;
+    }
+  }

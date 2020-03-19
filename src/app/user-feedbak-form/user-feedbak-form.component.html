@@ -1,81 +1,100 @@
 <div class="feedbackForm">
-    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
 
-        <mat-form-field appearance='standard'>
-    
-        <mat-label for="User Name"> Name </mat-label>
-        <input matInput placeholder="Enter User name" formControlName="userName">
-        
+    <mat-form-field appearance='standard'>
+
+      <mat-label for="User Name"> Name </mat-label>
+      <input matInput placeholder="Enter User name" formControlName="userName">
+
+    </mat-form-field>
+    <span *ngIf="!userForm.get('userName').valid && userForm.get('userName').touched " class="help-block">please Enter
+      Name</span>
+    <br>
+
+    <mat-form-field appearance='standard'>
+
+      <mat-label for="Email"> Email</mat-label>
+      <input matInput placeholder="Enter Registered Email" formControlName="email">
+
+    </mat-form-field>
+    <span *ngIf="!userForm.get('email').valid && userForm.get('email').touched " class="help-block">please Enter valid
+      email</span>
+    <br>
+
+    <mat-form-field appearance='standard'>
+
+      <mat-label for="Phone"> Phone</mat-label>
+      <input matInput placeholder="Enter Phone Number" formControlName="phone">
+
+
+    </mat-form-field>
+    <span *ngIf="!userForm.get('phone').valid && userForm.get('phone').touched " class="help-block">please Enter valid
+      Phone Number</span>
+    <br>
+
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Address
+          </mat-panel-title>
+          <mat-panel-description>
+            Enter Address
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-form-field>
+
+          <mat-label>State</mat-label>
+          <mat-select formControlName="state">
+            <mat-option *ngFor="let state of states" (click)="this.userForm.controls['city'].enable()" [value]="state">
+              {{state}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
-        <span *ngIf="!userForm.get('userName').valid && userForm.get('userName').touched " class="help-block">Pease Enter Name</span>
-        <br>
-    
-        <mat-form-field appearance='standard'>
-    
-            <mat-label for="Email"> Email</mat-label>
-            <input matInput placeholder="Enter Rgistered Email" formControlName="email">
-        
+
+        <mat-form-field>
+
+          <mat-label>city</mat-label>
+
+          <mat-select formControlName="city">
+            <mat-option *ngFor="let city of selectedCities" (click)="this.userForm.controls['street'].enable()"
+              [value]="city">
+              {{city}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
-        <span *ngIf="!userForm.get('email').valid && userForm.get('email').touched " class="help-block">Pease Enter valid email</span>
-        <br>
-    
-        <mat-form-field appearance='standard'>
-    
-            <mat-label for="Phone"> Phone</mat-label>
-            <input matInput placeholder="Enter Phone Number" formControlName="phone">
-           
-        
+
+        <mat-form-field>
+          <mat-label>Street</mat-label>
+          <input matInput type="text" formControlName="street">
         </mat-form-field>
-        <span *ngIf="!userForm.get('phone').valid && userForm.get('phone').touched " class="help-block">Pease Enter valid Phone Number</span>
-        <br>
-    
-        <mat-accordion>
-            <mat-expansion-panel>
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  Address
-                </mat-panel-title>
-                <mat-panel-description>
-                  Enter Address
-                </mat-panel-description>
-              </mat-expansion-panel-header>
 
-              <mat-form-field>
-                <mat-label>State</mat-label>
-                <input matInput type="text" formControlName="state" (keyup)="this.userForm.controls['city'].enable()">
-              </mat-form-field>
-          
-              <mat-form-field>
-                <mat-label>City</mat-label>
-                <input matInput type="text" formControlName="city" (keyup)="this.userForm.controls['street'].enable()" >
-              </mat-form-field>
+        <mat-form-field>
+          <mat-label>zipcode</mat-label>
+          <input matInput type="text" formControlName="zipcode">
+        </mat-form-field>
+      </mat-expansion-panel>
 
-              <mat-form-field>
-                <mat-label>Street</mat-label>
-                <input matInput type="text" formControlName="street"  >
-              </mat-form-field>
-          
-             
-             
-              <mat-form-field>
-                <mat-label>zipcode</mat-label>
-                <input matInput type="text" formControlName="zipcode">
-              </mat-form-field>
-            </mat-expansion-panel>
-            </mat-accordion>
-        <br>
-    
-        <mat-form-field appearance="standard">
-            <mat-label>Comments</mat-label>
-            <textarea matInput formControlName="comments"></textarea>
-          </mat-form-field>
-    
-        <br>
+    </mat-accordion>
+    <!-- <span *ngIf="!userForm.get('state').valid  && userForm.get('state').touched ||
+            !userForm.get('city').valid &&  userForm.get('city').touched || 
+            !userForm.get('street').valid &&  userForm.get('street').touched || 
+            !userForm.get('zipcode').valid && userForm.get('zipcode').touched"> 
+            Enter all fields of the address</span> -->
 
-          <button mat-button type="submit" [disabled]="userForm.status=='INVALID'">Submit</button>   
-    </form>
-    
-    
+    <br>
 
-    
+    <mat-form-field appearance="standard">
+      <mat-label>Comments</mat-label>
+      <textarea matInput formControlName="comments"></textarea>
+    </mat-form-field>
+
+    <br>
+    <button mat-button type="submit" [disabled]="userForm.status=='INVALID'">Submit</button>
+  </form>
+
+
+
+
 </div>

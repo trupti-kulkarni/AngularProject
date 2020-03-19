@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, Subject } from 'rxjs';
 import { User } from './User';
 import { HttpClient } from '@angular/common/http';
 
@@ -11,10 +11,11 @@ export class GetUserService {
    url='https://jsonplaceholder.typicode.com/users'
  
    // selectedUser=new BehaviorSubject <any>(null);
-   activeIndexLink= new BehaviorSubject<any> (-1);
+   activeIndexLink= new BehaviorSubject<any> (null);
+   loggedInUser= new BehaviorSubject<any>(null);
   constructor( private http : HttpClient) { }
 
-  fetchUser(){
+  fetchUsers(): Observable<any>{
    return this.http.get (this.url);
 
   }

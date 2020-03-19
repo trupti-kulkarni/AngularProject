@@ -1,3 +1,13 @@
+
+@media(max-width:500px){
+
+    .feedbackForm{
+        font-size: small;
+    }
+
+}
+
+
 .feedbackForm{
     /* position: relative;
     height: 75%;
@@ -14,18 +24,28 @@
 form{
     
     border: 1px solid gray;
+    position: relative;
+    height: 70vh !important;
+    overflow-y: auto;
     
 }
 mat-form-field{
-    margin: 1%;
+    margin-left: 6%;
+    width: 60%;
+
+
 }
 
  mat-expansion-panel{
-    width: 80%;
+    width: 60%;
+    margin-left: 6%;
+    margin-top: 1%;
+    border: 1px solid gray;
 }
 
 button {
-    margin: 1%;
+    margin-left: 6%;
+    margin-bottom: 1%;
     background-color: #3f51b5;
     color: white;
 }

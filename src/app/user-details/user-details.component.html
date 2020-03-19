@@ -7,32 +7,32 @@
             
             </button>
             
-          </mat-action-list>    
-    
+          </mat-action-list>     
     </mat-drawer>
     <mat-drawer-content >
        <mat-card>
         <mat-card-title>
-            {{selectedUser.username}}
+            <mat-icon> person_pin</mat-icon>
+            <mat-label> {{selectedUser.username}} </mat-label> 
         </mat-card-title>
         <mat-card-subtitle>
-            User Details :
+            
+           <mat-label>User Details</mat-label>
         </mat-card-subtitle>
         <mat-card-content>
-            <p class="cardContent"> Company Name:  {{selectedUser.company.name}} </p> <br>
-            <p class="cardContent">Address: {{selectedUser.address.city}}</p> <br>
-             <p class="cardContent"> Company: {{selectedUser.company.name}}</p> <br>
-             <p class="cardContent"> Email: {{selectedUser.email}} </p> <br>
-             <p class="cardContent"> Phone: {{selectedUser.phone }}</p>
+
+           
+            <mat-icon> place</mat-icon>    <mat-label class="cardContentLabel">  Address  :  </mat-label> <mat-label class="cardContent">{{selectedUser.address.city}}</mat-label> <br>
+            <mat-icon>work</mat-icon> <mat-label class="cardContentLabel"> Company : </mat-label>   <mat-label class="cardContent">{{selectedUser.company.name}}</mat-label><br>
+             <mat-icon>alternate_email</mat-icon> <mat-label class="cardContentLabel"> Email : </mat-label>  <mat-label class="cardContent">{{selectedUser.email}}</mat-label> <br>
+             <mat-icon>perm_phone_msg</mat-icon>  <mat-label class="cardContentLabel"> Phone : </mat-label>  <mat-label class="cardContent">{{selectedUser.phone }}</mat-label>
              
         </mat-card-content>
             
         <mat-card-footer>
             <a href={{selectedUser.website}} class="footer-content"> {{selectedUser.website}}</a>
         </mat-card-footer>
-
-           
-       
+ 
        </mat-card>
 
     </mat-drawer-content>

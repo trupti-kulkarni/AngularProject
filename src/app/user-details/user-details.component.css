@@ -1,11 +1,31 @@
+@media(max-width:500px){
+
+    .users{
+        font-size: 1rem !important;
+        width: 100%;
+        word-wrap: break-word;
+    }
+
+    .cardContentLabel{
+        font-size: 1rem !important;
+    }
+    .cardContent{
+        font-size: 1rem !important;
+    }
+
+}
+
+
 .users{
-    height: 90%;
+    position: relative;
+    height: 75vh;
     display: flex;
     flex-flow: column wrap;
     overflow: auto;
     
    
 }
+
 .mat-card-subtitle{
     padding-top: 1em;
     font-size: medium;
@@ -16,6 +36,12 @@
 mat-drawer-content{
     margin-top: 2em;
     align-self: center;
+    position: relative;
+    width: 50%;
+   
+}
+mat-card-content{
+    font-size: 40px;
 }
 mat-card{
     padding: 2em;
@@ -23,4 +49,17 @@ mat-card{
      /* background-color: #3f51b5; */
     
 }
+.cardContent{
+    font-size: large;
+    font-weight: 500;
+}
+.cardContentLabel{
 
+    font-style: italic;
+    font-size: x-large;
+    font-weight: 500;
+}
+mat-label{
+    margin: 5px;
+   
+}

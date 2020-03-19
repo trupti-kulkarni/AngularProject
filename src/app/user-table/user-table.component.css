@@ -5,12 +5,13 @@
     flex-direction: column;
     /* flex-flow: column wrap; */
     overflow: auto;
-    
+    font-weight: 400;
   
 }
 
 td{
  cursor: pointer;    
+ 
 }
 .filter{
     /* justify-self: start; */
@@ -18,3 +19,65 @@ td{
    margin-left: 1em;
     
 }
+mat-spinner{
+    position: relative;
+    left: 50%;
+    top: 30vh;
+}
+
+
+
+
+body {
+    font-family: 'Covered By Your Grace', cursive;
+    line-height: 1.25;
+    
+  }
+  
+  
+  @media screen and (max-width: 500px) {
+   
+    /* .displayTable{
+        width: 100%;
+        display: flex;
+        flex-flow: column;
+        overflow: auto;
+        
+    } */
+    /* table{
+        width: 100%;
+        display: flex;
+        flex-flow: column;
+       
+
+    } */
+    
+   table th{
+       margin:0;
+       padding: 0;
+      display: none; 
+   }
+    /* table, thead, tbody, th, td, tr { 
+		display: block; 
+    } */
+	
+    table tr{
+        
+         border-bottom: 1px solid gray ;
+       
+
+    }
+   
+    table td{
+        width: 90%;
+      
+        overflow: auto;
+        display: block;
+        
+        margin: 5px;
+       
+
+  } 
+
+
+  }

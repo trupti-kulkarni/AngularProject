@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { GetUserService } from '../Shared/get-user.service';
 import { Router } from '@angular/router';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 
 @Component({
@@ -16,6 +17,7 @@ export class UserTableComponent implements OnInit {
   dataSource : any;
   isError : boolean=false;
   paginator: MatPaginator = null;
+  isSmallScreen: boolean=false;
   displayedColumns=['Name','UserName','Email','Company Name','Address','Phone','Website'];
 
   // @ViewChild(MatPaginator, {static:true}) paginator : MatPaginator;
@@ -24,16 +26,12 @@ export class UserTableComponent implements OnInit {
     this.setDataSourceAttributes();
   }
 
-  constructor( private getUser: GetUserService, private router : Router){}
+  constructor( private getUser: GetUserService, private router : Router , private breakpointObserver : BreakpointObserver){}
 
-   ngViewAfterInit(){
- 
-   }
   ngOnInit(){
-
-  
-    
-    this.getUser.fetchUser()
+    this.isSmallScreen = this.breakpointObserver.isMatched('(max-width: 500px)');
+    console.log("is smll screen---",this.isSmallScreen)
+    this.getUser.fetchUsers()
     .subscribe(
     (data)=>{
       this.users = <User[]> data;
@@ -66,8 +64,7 @@ export class UserTableComponent implements OnInit {
   loadUserInfo(row){
     
     console.log(row);
-   // this.getUser.selectedUser.next(row);
-   this.getUser.activeIndexLink.next(0);
+    this.getUser.activeIndexLink.next(0);
     this.router.navigate(['/userDetails/'+row.id] )
   }
 

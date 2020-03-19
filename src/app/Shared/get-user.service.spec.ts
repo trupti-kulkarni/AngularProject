@@ -1,16 +1,69 @@
-import { TestBed } from '@angular/core/testing';
-
+import { TestBed, async, getTestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
 import { GetUserService } from './get-user.service';
+import { HttpClient } from '@angular/common/http'
+
 
 describe('GetUserService', () => {
-  let service: GetUserService;
 
+  let injector :TestBed
+  let service :GetUserService
+  let httpMock : HttpTestingController
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(GetUserService);
+    TestBed.configureTestingModule({
+      declarations: [],
+      imports: [HttpClientTestingModule],
+      providers:[GetUserService]
+
+    }).compileComponents();    
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  it("should return obsrvable<User> users", () => {
+    injector = getTestBed();
+
+    service = injector.get(GetUserService);
+    
+    httpMock = injector.get(HttpTestingController);
+    const expectedUsers: any[] = [{
+
+      id: 1,
+      name: 'tsk',
+      username: 'tsk',
+      email: 'tk@gslab.com',
+      company: {
+        name: 'GS Lab',
+        catchPhrase: 'HII',
+        bs: 'gjgj',
+      },
+      address: {
+        street: 'string',
+        suite: 'string',
+        city: 'string',
+        zipcode: 123,
+      },
+      phone: '89027673',
+      website: 'abc.com',
+      geo: {
+        'lat': '-37.3159',
+
+        "lng": '81.1496'
+      },
+
+
+    }]
+    service.fetchUsers().subscribe(
+
+      (users) => {
+        expect(users.length).toBe(1);
+        expect(users).toEqual(expectedUsers);
+      });
+      const req = httpMock.expectOne(service.url);
+      expect(req.request.method).toBe('GET');
+      req.flush(expectedUsers);
+
   });
+  
+
+
+
 });

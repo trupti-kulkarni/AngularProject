@@ -21,3 +21,7 @@ class Company{
     catchPhrase: string;
     bs: string;
 }
+class Geolocation{
+    lat: string;
+    lng: string
+}

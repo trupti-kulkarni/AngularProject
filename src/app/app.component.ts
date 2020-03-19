@@ -1,11 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component} from '@angular/core';
 import { GetUserService } from './Shared/get-user.service';
-import { User } from './Shared/User';
-import { map }  from 'rxjs/operators'
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { Route } from '@angular/compiler/src/core';
-import { Routes, Router } from '@angular/router';
+import {Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from './Shared/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -13,11 +9,11 @@ import { Routes, Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  // title = 'MatTable';
-  // users : User[];
-   navLinks: any[];
+  navLinks: any[];
   activeLinkIndex = -1; 
-  constructor(private router: Router, private userService: GetUserService) {
+  isAuthenticated: boolean=false;
+
+  constructor(private router: Router, private userService: GetUserService , private activeRoute: ActivatedRoute, private authService: AuthService) {
     this.navLinks = [
         {
             label: 'Users',
@@ -39,6 +35,9 @@ export class AppComponent {
    
 ngOnInit(): void {
 
+   this.isAuthenticated=this.authService.isAuthenticated();
+    
+   console.log("path from root is--",this.activeRoute)
   this.userService.activeIndexLink.subscribe(
     (activeLinkIndex=> this.activeLinkIndex=activeLinkIndex )
    
@@ -49,15 +48,9 @@ ngOnInit(): void {
   //    // this.activeLinkIndex = this.navLinks.indexOf(this.navLinks.find(tab => tab.link === '.' ));
   // });
 }
-ngAfterViewInit(){
-// this.userService.activeIndexLink.subscribe(
-//   (activeLinkIndex=> this.activeLinkIndex=activeLinkIndex )
- 
-//    );
-}
+
 
 setActiveIndex(link){
   this.activeLinkIndex=link.index;
-  //this.router.navigateByUrl(link.link)
 }
 }

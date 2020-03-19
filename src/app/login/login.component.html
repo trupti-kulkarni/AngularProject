@@ -1,0 +1,21 @@
+<div class="login">
+<form [formGroup]='loginForm' (ngSubmit)="onLoggedIn()">
+
+    <mat-form-field appearance='standard'>
+
+        <mat-label for="User Name"> User name </mat-label>
+        <input [(ngModel)]=user.username  matInput type="text" placeholder="Enter User name" formControlName="userName">
+  
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance='standard'>
+
+        <mat-label for="password"> Password </mat-label>
+        <input [(ngModel)]=user.password matInput type="password" placeholder="Enter password" formControlName="password">
+  
+    </mat-form-field>
+    <br>
+    <button mat-button type="submit">log In</button>
+</form>
+
+</div>

@@ -8,35 +8,38 @@ import {MatPaginatorModule } from '@angular/material/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-
-
 import {MatSortModule } from '@angular/material/sort';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { Routes, RouterModule } from '@angular/router';
-import { MatCardModule, MatCard } from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { UserTableComponent } from './user-table/user-table.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { TDFormComponent } from './td-form/td-form.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { UserFeedbakFormComponent } from './user-feedbak-form/user-feedbak-form.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
+import {LayoutModule} from '@angular/cdk/layout';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './Shared/auth-guard.service';
+import { AuthService } from './Shared/auth.service';
+
 
 const appRoutes : Routes=[
   
-  { path : 'userDetails/:id', component: UserDetailsComponent  },
+  { path : 'userDetails/:id', component: UserDetailsComponent, canActivate: [AuthGuard] },
  
-  {path : 'userTable', component: UserTableComponent},
-  {path : 'feedbackFrom',component: TDFormComponent},
-  { path :'UserFeedbackForm', component: UserFeedbakFormComponent},
-
-  { path : '' , redirectTo: '/userTable',pathMatch:'full'},
+  {path : 'userTable', component: UserTableComponent, canActivate: [AuthGuard]},
+  { path :'UserFeedbackForm', component: UserFeedbakFormComponent, canActivate: [AuthGuard]},
+  { path: 'Login',component: LoginComponent},
+  { path : '' , redirectTo: 'Login',pathMatch:'full'},
   { path: '**', redirectTo:'/userTable' }
  ]
 @NgModule({
@@ -44,8 +47,8 @@ const appRoutes : Routes=[
     AppComponent,
     UserDetailsComponent,
     UserTableComponent,
-    TDFormComponent,
     UserFeedbakFormComponent,
+    LoginComponent,
     
   ],
   imports: [
@@ -69,6 +72,10 @@ const appRoutes : Routes=[
     MatExpansionModule,
     MatButtonModule,
     MatSnackBarModule,
+    MatSelectModule,
+    MatIconModule,
+    LayoutModule,
+    FormsModule,
     RouterModule.forRoot(
       appRoutes
     )
@@ -76,7 +83,7 @@ const appRoutes : Routes=[
     
     
   ],
-  providers: [],
+  providers: [AuthGuard, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
