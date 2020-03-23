@@ -1,19 +1,18 @@
 import { Component} from '@angular/core';
 import { GetUserService } from './Shared/get-user.service';
 import {Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from './Shared/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   navLinks: any[];
   activeLinkIndex = -1; 
   isAuthenticated: boolean=false;
 
-  constructor(private router: Router, private userService: GetUserService , private activeRoute: ActivatedRoute, private authService: AuthService) {
+  constructor(private router: Router, private userService: GetUserService , private activeRoute: ActivatedRoute) {
     this.navLinks = [
         {
             label: 'Users',
@@ -35,10 +34,8 @@ export class AppComponent {
    
 ngOnInit(): void {
 
-   this.isAuthenticated=this.authService.isAuthenticated();
-    
    console.log("path from root is--",this.activeRoute)
-  this.userService.activeIndexLink.subscribe(
+  this.userService.getActiveLinkIndex() .subscribe(
     (activeLinkIndex=> this.activeLinkIndex=activeLinkIndex )
    
      );

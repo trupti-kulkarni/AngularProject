@@ -4,13 +4,11 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { GetUserService } from '../Shared/get-user.service';
 import { Router } from '@angular/router';
-import { BreakpointObserver } from '@angular/cdk/layout';
-
 
 @Component({
   selector: 'app-user-table',
   templateUrl: './user-table.component.html',
-  styleUrls: ['./user-table.component.css']
+  styleUrls: ['./user-table.component.scss']
 })
 export class UserTableComponent implements OnInit {
   users : User[];
@@ -26,26 +24,21 @@ export class UserTableComponent implements OnInit {
     this.setDataSourceAttributes();
   }
 
-  constructor( private getUser: GetUserService, private router : Router , private breakpointObserver : BreakpointObserver){}
+  constructor( private getUser: GetUserService, private router : Router){}
 
   ngOnInit(){
-    this.isSmallScreen = this.breakpointObserver.isMatched('(max-width: 500px)');
-    console.log("is smll screen---",this.isSmallScreen)
+    
     this.getUser.fetchUsers()
     .subscribe(
     (data)=>{
       this.users = <User[]> data;
      this.dataSource = new MatTableDataSource<User> (this.users);
-     
-      // console.log(this.users);
-    
-      
-      
+     console.log(this.users);   
     },
-    (error)=>{
-      console.log(error);
-      this.isError=true;
-  }
+  //   (error)=>{
+  //     console.log(error);
+      
+  //  }
   )
   }
    
@@ -63,8 +56,9 @@ export class UserTableComponent implements OnInit {
   }
   loadUserInfo(row){
     
-    console.log(row);
-    this.getUser.activeIndexLink.next(0);
+    //console.log(row);
+    //this.getUser.activeIndexLink.next(0);
+    this.getUser.addActiveLinkIndex(0);
     this.router.navigate(['/userDetails/'+row.id] )
   }
 

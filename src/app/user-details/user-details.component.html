@@ -1,5 +1,6 @@
-<mat-drawer-container class="users" *ngIf="users">
-    <mat-drawer mode='side' opened> 
+<mat-drawer-container class="users" *ngIf="users; else spinner">
+    <mat-drawer #sidenav mode='over'  >  
+        <div > <button class="navbutton" mat-button (blur)="sidenav.toggle()">Users  <mat-icon>keyboard_arrow_left</mat-icon></button> </div>
         <mat-action-list>
             <button [ngStyle]="{'background-color':user.name==selectedUser.name?'lightgrey':'transparent'}"  mat-list-item *ngFor="let user of users" (click)="loadUser(user)">
                 
@@ -10,6 +11,9 @@
           </mat-action-list>     
     </mat-drawer>
     <mat-drawer-content >
+        
+        <button mat-button class="toggleNav"(mouseover)="sidenav.toggle()"> <span class="btntext">Users </span>
+             </button>
        <mat-card>
         <mat-card-title>
             <mat-icon> person_pin</mat-icon>
@@ -38,3 +42,8 @@
     </mat-drawer-content>
 
 </mat-drawer-container>
+<ng-template #spinner> 
+   
+    <mat-spinner class="spinner" area-label="Loding Users">
+    </mat-spinner>
+  </ng-template>

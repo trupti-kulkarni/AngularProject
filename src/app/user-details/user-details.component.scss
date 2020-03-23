@@ -1,0 +1,163 @@
+
+$bgcolor:#3f51b5;
+@media screen and (max-width:500px){
+
+    .users{
+        font-size: 1rem !important;
+        width: 90%;
+        word-wrap: break-word;
+    }
+
+    .cardContentLabel{
+        font-size: small !important;
+    }
+    .cardContent{
+        font-size: small !important;
+    }
+   mat-drawer-content{
+
+     display: block;
+     position: relative;
+     padding: 0;
+     width: 90% !important;
+     height: 100% !important;
+     align-self: center;
+   }
+
+  mat-card{
+    
+     border: 1px solid lightgrey;
+     padding: 0;
+     margin: 0;
+     width: 100% !important;
+     height: 100% !important;
+     line-height: 0.6rem !important;
+    
+   } 
+   mat-icon{
+       size: x-small;
+   }
+   mat-drawer{
+    font-size: x-small !important;
+    
+   }
+
+   .toggleNav{
+    position: fixed !important;
+    top: 18vh !important;
+    width: 10vw;
+    height: 5vh !important;
+    font: large;
+    padding: 0;
+    background-color: $bgcolor;
+    color: white;
+    border-radius: 0;
+
+}
+// .btntext{
+//     position: relative;
+//     top: -20vh !important;
+   
+
+// }
+
+.navbutton{
+    font-size: small !important;
+    border-radius: 0 !important;
+}
+.mat-card-title {
+    font-size: large;
+}
+
+mat-icon{
+    align-content: center;
+}
+
+}
+
+.toggleNav{
+    
+    position: fixed;
+    left: 0%;
+    top:14% !important;
+    margin: 0;
+    font: large;
+    padding: 0;
+    background-color: $bgcolor;
+    color: white;
+    border-radius: 0%;
+    // height: 75vh;
+   justify-items: start;
+}
+
+// .btntext{
+//     position: relative;
+//     top: -35vh !important;
+   
+
+// }
+
+.users{
+    position: relative;
+    height: 75vh;
+    display: flex;
+    flex-flow: column wrap;
+    overflow: auto;
+    
+   
+}
+
+.mat-card-subtitle{
+    padding-top: 1em;
+    font-size: medium;
+    color:#3f51b5 ;
+    font-weight: 400;
+}
+
+mat-drawer-content{
+    margin-top: 3em;
+    align-self: center;
+    
+    width: 70%;
+    height: 90%;
+}
+mat-card-content{
+    font-size: 40px;
+}
+mat-card{
+    padding: 2em;
+     border: 1px solid lightgrey;
+     align-self: center;
+     width: 80%;
+    height: 90%;
+    line-height: 2rem;
+    
+     /* background-color: #3f51b5; */
+    
+}
+.cardContent{
+    font-size: large;
+    font-weight: 500;
+}
+.cardContentLabel{
+
+    font-style: italic;
+    font-size: x-large;
+    font-weight: 500;
+}
+mat-label{
+    margin: 5px;
+   
+}
+.navbutton{
+    position: relative;
+    width: 100%;
+    font-size: large;
+    background-color: $bgcolor;
+    color: white;
+}
+.spinner{
+    position: fixed;
+    left: 50%;
+    top: 30vh;
+}

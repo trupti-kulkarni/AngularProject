@@ -10,13 +10,13 @@ import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
-
 describe('UserTableComponent', () => {
   let component: UserTableComponent;
   let fixture: ComponentFixture<UserTableComponent>;
   let router : Router
   let getUsersSpy: jasmine.Spy;
-  let errorSpy: jasmine.Spy;
+  let userService: any;
+  
 
 
   beforeEach(async(() => {
@@ -48,13 +48,14 @@ describe('UserTableComponent', () => {
 
 
     }]
-    const userService = jasmine.createSpyObj('GetUserService', [
-      'fetchUsers'
-     
+    userService = jasmine.createSpyObj('GetUserService', [
+      'fetchUsers',
+     'getActiveIndexLink',
+     'addActiveLinkIndex'
     ]);
-   getUsersSpy= userService.fetchUsers.and.returnValue(of(expectedUsers));
-   
 
+    
+   getUsersSpy= userService.fetchUsers.and.returnValue(of(expectedUsers));
 
     TestBed.configureTestingModule({
       declarations: [ UserTableComponent ], 
@@ -66,9 +67,8 @@ describe('UserTableComponent', () => {
         RouterModule
       ],
       providers:[
-       { provide:GetUserService , useValue: userService },
-      
-       
+       { provide:GetUserService , useValue: userService }
+        
       ]
 
     }).compileComponents();
@@ -87,9 +87,11 @@ describe('UserTableComponent', () => {
     const user={
       id:1
     }
-   
     const navigateSpy = spyOn(router, 'navigate');
+
     component.loadUserInfo(user);
+    userService.addActiveLinkIndex(0);
+    fixture.detectChanges();
      expect(navigateSpy).toHaveBeenCalledWith(['/userDetails/1']);
   });
 

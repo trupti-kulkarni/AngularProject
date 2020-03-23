@@ -19,8 +19,9 @@ td{
    margin-left: 1em;
     
 }
-mat-spinner{
-    position: relative;
+
+.spinner{
+    position: fixed;
     left: 50%;
     top: 30vh;
 }
@@ -36,35 +37,16 @@ body {
   
   
   @media screen and (max-width: 500px) {
-   
-    /* .displayTable{
-        width: 100%;
-        display: flex;
-        flex-flow: column;
-        overflow: auto;
-        
-    } */
-    /* table{
-        width: 100%;
-        display: flex;
-        flex-flow: column;
-       
-
-    } */
     
    table th{
        margin:0;
        padding: 0;
       display: none; 
    }
-    /* table, thead, tbody, th, td, tr { 
-		display: block; 
-    } */
 	
     table tr{
         
          border-bottom: 1px solid gray ;
-       
 
     }
    

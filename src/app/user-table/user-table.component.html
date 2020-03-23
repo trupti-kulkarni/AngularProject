@@ -1,10 +1,6 @@
-<mat-spinner class='spinner' area-label="Loding Users" *ngIf='!users' >
-
-</mat-spinner>
 
 
-
-<div *ngIf='users' class="displayTable">
+<div *ngIf='users; else spinner' class="displayTable">
 
     <mat-form-field class="filter"> 
       <mat-label>Filter</mat-label>
@@ -75,14 +71,13 @@
       
     </mat-paginator>
   
-    <!-- <ng-template #NoData>
-    <div>
-      Something Went Wrong!!
-    </div>
-    
-  </ng-template> -->
     
   </div>
+ <ng-template #spinner> 
+   
+  <mat-spinner class="spinner" area-label="Loding Users">
+  </mat-spinner>
+</ng-template>
 
   
   

@@ -16,7 +16,7 @@ describe('UserFeedbakFormComponent', () => {
   let component: UserFeedbakFormComponent;
   let fixture: ComponentFixture<UserFeedbakFormComponent>;
   let snack: MatSnackBar;
- 
+
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -72,10 +72,10 @@ describe('UserFeedbakFormComponent', () => {
       userName: 'tk',
       email: 'tk@gmail.com',
       phone: '8907268134',
-       state: 'Maharashtra',
+      state: 'Maharashtra',
       city: 'Pune',
-      street : 'abc',
-       zipcode: '413004', 
+      street: 'abc',
+      zipcode: '413004',
       comments: 'good!',
     };
     component.userForm.setValue(feedbackData);

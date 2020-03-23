@@ -17,7 +17,8 @@ describe('User Details Component', () => {
   let fixture: ComponentFixture<UserDetailsComponent>;
   let router : Router
   let getUsersSpy: jasmine.Spy;
-  let errorSpy: jasmine.Spy;
+  let userService:any;
+  
 
 
   beforeEach(async(() => {
@@ -49,14 +50,14 @@ describe('User Details Component', () => {
 
 
     }]
-    const userService = jasmine.createSpyObj('GetUserService', [
-      'fetchUsers'
+    userService = jasmine.createSpyObj('GetUserService', [
+      'fetchUsers',
+      'getActiveLinkIndex',
+      'addActiveLinkIndex'
      
     ]);
    getUsersSpy= userService.fetchUsers.and.returnValue(of(expectedUsers));
-   
-
-
+  
     TestBed.configureTestingModule({
       declarations: [ UserDetailsComponent ], 
       imports:[
@@ -90,9 +91,6 @@ describe('User Details Component', () => {
     expect(component.users).toBeTruthy();
 
   })
-
- 
-
 //   it('should fetch users list', () => {
 //     //  component.loadUsers();
 //     expect(getUsersSpy.calls.any()).toBe(true, 'getUsersSpy called');
@@ -101,15 +99,16 @@ describe('User Details Component', () => {
 
 
 
-// it("should load selected user",()=>{
-//     const user={
-//         id:1
-//     }
-//     const navigateSpy = spyOn(router, 'navigate');
-//     component.loadSelectedUser(user);
-//     GetUserService.activeLinkIndex.next(0);
-//      expect(navigateSpy).toHaveBeenCalledWith(['/userDetails/1']);
-// })
+it("should load selected user",()=>{
+    const user={
+        id:1
+    }
+    const navigateSpy = spyOn(router, 'navigate');
+    userService.addActiveLinkIndex(0);
+    component.loadUser(user);
+    fixture.detectChanges();
+     expect(navigateSpy).toHaveBeenCalledWith(['/userDetails/1']);
+})
   
   
 });

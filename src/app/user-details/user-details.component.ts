@@ -1,23 +1,24 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, HostListener } from '@angular/core';
 import { GetUserService } from '../Shared/get-user.service';
 import { User } from '../Shared/User';
 import { Router, ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-user-details',
   templateUrl: './user-details.component.html',
-  styleUrls: ['./user-details.component.css']
+  styleUrls: ['./user-details.component.scss']
 })
 
 export class UserDetailsComponent implements OnInit {
 
   users: User[];
   selectedUser: User=null;
-  constructor(private getUsers: GetUserService, private router: Router, private route: ActivatedRoute) { }
+  @ViewChild('sidenav') sidenav: any;
+ 
+  constructor(private getUsers: GetUserService, private router: Router, private route: ActivatedRoute) { }  
 
   ngOnInit(): void {
-
-   
     this.getUsers.fetchUsers().subscribe(
 
       (response) => {
@@ -35,20 +36,20 @@ export class UserDetailsComponent implements OnInit {
         )
        
       },
-      (error) => {
-        console.log(error);
-      }
+      // (error) => {
+      //   console.log(error);
+      // }
 
 
     )
 
   }
-  
-
+ 
+   
   loadUser(user) {
   
-    this.getUsers.activeIndexLink.next(0);
-    this.router.navigate(['/userDetails', user.id]);
+    this.getUsers.addActiveLinkIndex(0);
+    this.router.navigate(['/userDetails/'+user.id]);
   }
 
 }

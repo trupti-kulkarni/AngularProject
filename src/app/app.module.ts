@@ -27,19 +27,15 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import {LayoutModule} from '@angular/cdk/layout';
-import { LoginComponent } from './login/login.component';
-import { AuthGuard } from './Shared/auth-guard.service';
-import { AuthService } from './Shared/auth.service';
 
 
 const appRoutes : Routes=[
   
-  { path : 'userDetails/:id', component: UserDetailsComponent, canActivate: [AuthGuard] },
+  { path : 'userDetails/:id', component: UserDetailsComponent },
  
-  {path : 'userTable', component: UserTableComponent, canActivate: [AuthGuard]},
-  { path :'UserFeedbackForm', component: UserFeedbakFormComponent, canActivate: [AuthGuard]},
-  { path: 'Login',component: LoginComponent},
-  { path : '' , redirectTo: 'Login',pathMatch:'full'},
+  {path : 'userTable', component: UserTableComponent},
+  { path :'UserFeedbackForm', component: UserFeedbakFormComponent},
+  { path : '' , redirectTo: '/userTable',pathMatch:'full'},
   { path: '**', redirectTo:'/userTable' }
  ]
 @NgModule({
@@ -47,8 +43,7 @@ const appRoutes : Routes=[
     AppComponent,
     UserDetailsComponent,
     UserTableComponent,
-    UserFeedbakFormComponent,
-    LoginComponent,
+    UserFeedbakFormComponent
     
   ],
   imports: [
@@ -83,7 +78,7 @@ const appRoutes : Routes=[
     
     
   ],
-  providers: [AuthGuard, AuthService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

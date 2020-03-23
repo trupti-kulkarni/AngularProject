@@ -6,7 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-user-feedbak-form',
   templateUrl: './user-feedbak-form.component.html',
-  styleUrls: ['./user-feedbak-form.component.css']
+  styleUrls: ['./user-feedbak-form.component.scss']
 })
 export class UserFeedbakFormComponent implements OnInit {
 

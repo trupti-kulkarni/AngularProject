@@ -9,21 +9,23 @@ describe('GetUserService', () => {
   let injector :TestBed
   let service :GetUserService
   let httpMock : HttpTestingController
+  
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [],
       imports: [HttpClientTestingModule],
       providers:[GetUserService]
 
-    }).compileComponents();    
-  });
-
-  it("should return obsrvable<User> users", () => {
+    })
     injector = getTestBed();
 
     service = injector.get(GetUserService);
     
     httpMock = injector.get(HttpTestingController);
+  });
+
+  it("should return obsrvable<User> users", () => {
+  
     const expectedUsers: any[] = [{
 
       id: 1,
@@ -63,6 +65,15 @@ describe('GetUserService', () => {
 
   });
   
+  it("should add and get active link",()=>{
+    service.addActiveLinkIndex(1);
+       
+    service.getActiveLinkIndex().subscribe(
+      index=>{
+        expect(index).toBe(1); 
+      }
+    )
+  })
 
 
 
