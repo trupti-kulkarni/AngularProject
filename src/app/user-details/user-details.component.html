@@ -30,11 +30,13 @@
             <mat-icon>work</mat-icon> <mat-label class="cardContentLabel"> Company : </mat-label>   <mat-label class="cardContent">{{selectedUser.company.name}}</mat-label><br>
              <mat-icon>alternate_email</mat-icon> <mat-label class="cardContentLabel"> Email : </mat-label>  <mat-label class="cardContent">{{selectedUser.email}}</mat-label> <br>
              <mat-icon>perm_phone_msg</mat-icon>  <mat-label class="cardContentLabel"> Phone : </mat-label>  <mat-label class="cardContent">{{selectedUser.phone }}</mat-label>
-             
+       
         </mat-card-content>
             
         <mat-card-footer>
             <a href={{selectedUser.website}} class="footer-content"> {{selectedUser.website}}</a>
+            <br>
+            <button mat-button class='navbutton' (click)="submitFeedback()"> Feedback</button>     
         </mat-card-footer>
  
        </mat-card>

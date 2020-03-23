@@ -110,6 +110,12 @@ it("should load selected user",()=>{
      expect(navigateSpy).toHaveBeenCalledWith(['/userDetails/1']);
 })
   
+it("should redirect to feedback form",()=>{
+  const navigateSpy = spyOn(router, 'navigate');
+  component.submitFeedback();
+  fixture.detectChanges();
+  expect(navigateSpy).toHaveBeenCalledWith(['UserFeedbackForm']);
+})
   
 });
 export class ActivatedRouteMock1 {

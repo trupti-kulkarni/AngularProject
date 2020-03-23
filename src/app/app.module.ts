@@ -27,17 +27,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import {LayoutModule} from '@angular/cdk/layout';
+import { AppRoutingModule } from './app-routing.module';
 
-
-const appRoutes : Routes=[
-  
-  { path : 'userDetails/:id', component: UserDetailsComponent },
- 
-  {path : 'userTable', component: UserTableComponent},
-  { path :'UserFeedbackForm', component: UserFeedbakFormComponent},
-  { path : '' , redirectTo: '/userTable',pathMatch:'full'},
-  { path: '**', redirectTo:'/userTable' }
- ]
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,11 +62,7 @@ const appRoutes : Routes=[
     MatIconModule,
     LayoutModule,
     FormsModule,
-    RouterModule.forRoot(
-      appRoutes
-    )
-    // AppRoutingModule
-    
+    AppRoutingModule
     
   ],
   providers: [],
