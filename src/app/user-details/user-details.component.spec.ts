@@ -112,6 +112,7 @@ it("should load selected user",()=>{
   
 it("should redirect to feedback form",()=>{
   const navigateSpy = spyOn(router, 'navigate');
+  userService.addActiveLinkIndex(1);
   component.submitFeedback();
   fixture.detectChanges();
   expect(navigateSpy).toHaveBeenCalledWith(['UserFeedbackForm']);

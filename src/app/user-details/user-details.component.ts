@@ -52,6 +52,7 @@ export class UserDetailsComponent implements OnInit {
     this.router.navigate(['/userDetails/'+user.id]);
   }
   submitFeedback(){
+    this.getUsers.addActiveLinkIndex(1);
     this.router.navigate(['UserFeedbackForm']);
   }
 
