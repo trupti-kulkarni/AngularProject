@@ -11,19 +11,30 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { of, Observable } from 'rxjs';
+import { convertToParamMap, ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('UserFeedbakFormComponent', () => {
   let component: UserFeedbakFormComponent;
   let fixture: ComponentFixture<UserFeedbakFormComponent>;
   let snack: MatSnackBar;
-
-
+  let router:Router;
+  let MockRouter = jasmine.createSpy('navigate');
+   class ActivatedRouteMock1 {
+    queryParams = of(
+      convertToParamMap({
+        username : 'tk',
+        email : 'tk@gmail.com',
+        phone:'8907268134'
+      })
+    );
+  }
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [UserFeedbakFormComponent],
       imports: [
         BrowserModule,
-        BrowserAnimationsModule,
         FormsModule,
         ReactiveFormsModule,
         MatSnackBarModule,
@@ -31,18 +42,26 @@ describe('UserFeedbakFormComponent', () => {
         MatSelectModule,
         MatIconModule,
         MatButtonModule,
-        MatInputModule
+        MatInputModule,
+        BrowserAnimationsModule,
+        RouterTestingModule,
+        RouterModule,
       ],
       providers: [
-
+        {
+          provide: ActivatedRoute,
+          useClass: ActivatedRouteMock1
+        },
+        
       ]
     })
       .compileComponents();
-    fixture = TestBed.createComponent(UserFeedbakFormComponent);
-    //router = fixture.debugElement.injector.get(Router);
-    snack = fixture.debugElement.injector.get(MatSnackBar);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+      fixture = TestBed.createComponent(UserFeedbakFormComponent);
+      component = fixture.componentInstance;
+      router = fixture.debugElement.injector.get(Router);
+      snack=fixture.debugElement.injector.get(MatSnackBar);
+      fixture.detectChanges();
+  
   }));
 
 
@@ -67,7 +86,8 @@ describe('UserFeedbakFormComponent', () => {
   })
 
   it('should open snack bar on submit form', () => {
-    let spy = spyOn(snack, 'open');
+    
+    let spy = spyOn(snack,'open');
     let feedbackData = {
       userName: 'tk',
       email: 'tk@gmail.com',
@@ -83,5 +103,8 @@ describe('UserFeedbakFormComponent', () => {
     expect(spy).toHaveBeenCalled();
   })
 
+  
+
 });
+
 

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { GetUserService } from '../Shared/get-user.service';
-import { RouterModule,Router, convertToParamMap, ActivatedRoute } from '@angular/router';
+import { RouterModule,Router, convertToParamMap, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 // import { MatPaginator } from '@angular/material/paginator';
@@ -115,7 +115,15 @@ it("should redirect to feedback form",()=>{
   userService.addActiveLinkIndex(1);
   component.submitFeedback();
   fixture.detectChanges();
-  expect(navigateSpy).toHaveBeenCalledWith(['UserFeedbackForm']);
+  let userSelected: NavigationExtras={
+    queryParams:{
+      "username": component.selectedUser.username,
+      "email": component.selectedUser.email,
+      "phone": component.selectedUser.phone,
+
+    }
+   }
+  expect(navigateSpy).toHaveBeenCalledWith(['UserFeedbackForm'],userSelected);
 })
   
 });

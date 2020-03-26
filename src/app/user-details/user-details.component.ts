@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild, HostListener } from '@angular/core';
 import { GetUserService } from '../Shared/get-user.service';
 import { User } from '../Shared/User';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 
 
 @Component({
@@ -53,7 +53,15 @@ export class UserDetailsComponent implements OnInit {
   }
   submitFeedback(){
     this.getUsers.addActiveLinkIndex(1);
-    this.router.navigate(['UserFeedbackForm']);
+    let userSelected: NavigationExtras={
+     queryParams:{
+       "username": this.selectedUser.username,
+       "email": this.selectedUser.email,
+       "phone":this.selectedUser.phone,
+
+     }
+    }
+    this.router.navigate(['UserFeedbackForm'],userSelected);
   }
 
 }

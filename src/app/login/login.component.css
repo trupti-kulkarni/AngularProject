@@ -1,0 +1,19 @@
+form{
+    margin: 2%;
+    position: relative;
+    top: 5vh;
+    padding: 2%;
+   
+   
+  
+}
+
+button{
+  
+    margin: 1%;
+}
+.spinner{
+    position: relative;
+    left:20vw;
+}
+

@@ -1,5 +1,7 @@
 
 $bgcolor:#3f51b5;
+
+
 @media screen and (max-width:500px){
 
     .users{
@@ -13,6 +15,12 @@ $bgcolor:#3f51b5;
     }
     .cardContent{
         font-size: small !important;
+    }
+    .toggleNav{
+        position: relative !important;
+        top: 10vh !important;
+        width:18vw !important;
+
     }
    mat-drawer-content{
 
@@ -42,24 +50,8 @@ $bgcolor:#3f51b5;
     
    }
 
-   .toggleNav{
-    position: fixed !important;
-    top: 18vh !important;
-    width: 10vw;
-    height: 5vh !important;
-    font: large;
-    padding: 0;
-    background-color: $bgcolor;
-    color: white;
-    border-radius: 0;
+  
 
-}
-// .btntext{
-//     position: relative;
-//     top: -20vh !important;
-   
-
-// }
 
 .navbutton{
     font-size: small !important;
@@ -79,15 +71,16 @@ mat-icon{
     
     position: fixed;
     left: 0%;
-    top:14% !important;
+    top:12% !important;
     margin: 0;
     font: large;
     padding: 0;
     background-color: $bgcolor;
     color: white;
     border-radius: 0%;
-    // height: 75vh;
-   justify-items: start;
+    width: 5vw;
+    height:5vh;
+    text-align: center;
 }
 
 // .btntext{
@@ -99,11 +92,11 @@ mat-icon{
 
 .users{
     position: relative;
-    height: 75vh;
+    height: 100vh;
     display: flex;
     flex-flow: column wrap;
     overflow: auto;
-    
+    background: white;
    
 }
 
@@ -119,7 +112,8 @@ mat-drawer-content{
     align-self: center;
     
     width: 70%;
-    height: 90%;
+    height: 100% !important;
+    background: white;
 }
 mat-card-content{
     font-size: 40px;
@@ -129,11 +123,14 @@ mat-card{
      border: 1px solid lightgrey;
      align-self: center;
      width: 80%;
-    height: 90%;
+    // height: 90%;
     line-height: 2rem;
     
      /* background-color: #3f51b5; */
     
+}
+mat-drawer{
+    background: white;
 }
 .cardContent{
     font-size: large;
@@ -152,6 +149,7 @@ mat-label{
 .navbutton{
     position: relative;
     // width: 100%;
+    margin: 3%;
     font-size: large;
     background-color: $bgcolor;
     color: white;

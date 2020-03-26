@@ -28,13 +28,15 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import {LayoutModule} from '@angular/cdk/layout';
 import { AppRoutingModule } from './app-routing.module';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserDetailsComponent,
     UserTableComponent,
-    UserFeedbakFormComponent
+    UserFeedbakFormComponent,
+    LoginComponent
     
   ],
   imports: [

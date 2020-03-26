@@ -1,15 +1,18 @@
-<div >
-<mat-toolbar color="primary">
-  <span> User Information</span>
-</mat-toolbar>
+<div>
+  <mat-toolbar color="primary">
+    <span> Manage User</span>
+  </mat-toolbar>
 
-<nav mat-tab-nav-bar>
+  <nav mat-tab-nav-bar *ngIf=isAuthenticated>
 
-  <a mat-tab-link *ngFor="let link of navLinks" [ngStyle]="{'border-bottom':activeLinkIndex==link.index?'3px solid #3f51b5':'none'}"[routerLink]="link.link" (click)="setActiveIndex(link)" routerLinkActive #rla="routerLinkActive"
-    [active]="rla.isActive">
-    {{link.label}}
-  </a>
-</nav>
-<router-outlet></router-outlet>
+    <a mat-tab-link *ngFor="let link of navLinks"
+      [ngStyle]="{'border-bottom':activeLinkIndex==link.index?'3px solid #3f51b5':'none'}" [routerLink]="link.link"
+      (click)="setActiveIndex(link)" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
+      {{link.label}}
+    </a>
+
+
+  </nav>
+  
 </div>
-
+<router-outlet></router-outlet>

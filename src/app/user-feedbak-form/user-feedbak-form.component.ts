@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -10,7 +11,17 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class UserFeedbakFormComponent implements OnInit {
 
-  constructor(private snackbar: MatSnackBar) { }
+   username:string;
+   email:string;
+   phone:string;
+  constructor(private snackbar: MatSnackBar, private route:ActivatedRoute) {
+
+    this.route.queryParams.subscribe(params => {
+      this.username = params["username"];
+      this.email = params["email"];
+      this.phone=params["phone"];
+  });
+   }
   userForm: FormGroup;
   states = ["Andhra Pradesh", "Rajasthan", "Maharashtra", "Madhya Pradesh"];
   cities = {
@@ -27,10 +38,10 @@ export class UserFeedbakFormComponent implements OnInit {
 
     this.userForm = new FormGroup({
 
-      'userName': new FormControl('', Validators.required),
-      'email': new FormControl('', [Validators.required, Validators.email]),
+      'userName': new FormControl(this.username, Validators.required),
+      'email': new FormControl(this.email, [Validators.required, Validators.email]),
 
-      'phone': new FormControl('', [Validators.required, Validators.minLength(10)]),
+      'phone': new FormControl(this.phone, [Validators.required, Validators.minLength(10)]),
       'state': new FormControl('', Validators.required),
      
       'city': new FormControl({ value: '', disabled: true }),
@@ -58,7 +69,8 @@ export class UserFeedbakFormComponent implements OnInit {
     this.snackbar.open("Thanks For the Feedback!!", '', {
       duration: 2000,
     });
-    this.userForm.reset;
+    // this.userForm.markAsUntouched;
+    // this.userForm.reset();
   }
 
 }

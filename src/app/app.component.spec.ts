@@ -6,6 +6,8 @@ import {HttpClientTestingModule, HttpTestingController} from '@angular/common/ht
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { Component } from '@angular/core';
+import { AuthService } from './Shared/auth.service';
+import { of } from 'rxjs';
 
 
 describe('AppComponent', () => {
@@ -13,7 +15,7 @@ describe('AppComponent', () => {
  let httpTestingController: HttpTestingController;
  let component: AppComponent;
  let fixture: ComponentFixture<AppComponent>;
-//let userService=jasmine.createSpyObj('GetUserService',['fetchUsers','activeIndexLink'])
+let authService=jasmine.createSpyObj('AuthService',['getUserObservable']);
 
 //let activeIndexSpy =spyOnProperty(GetUserService.activeLinkIndex, 'value', 'get').and.returnValue(1);
   beforeEach(async(() => {
@@ -28,7 +30,9 @@ describe('AppComponent', () => {
         MatToolbarModule
       ],
       providers:[
-       GetUserService
+       GetUserService,
+       { provide: AuthService,
+        useValue: authService }
       ]
      
     }).compileComponents();
@@ -39,7 +43,7 @@ describe('AppComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
-
+  let authUserSpy=authService.getUserObservable.and.returnValue(of({email:'abc@gmail.com',password:'123456'}));
   it('should have navLinks of type array', async () => {
     expect(component.navLinks).toBeInstanceOf(Array);
   });
@@ -52,6 +56,20 @@ describe('AppComponent', () => {
    expect(component.activeLinkIndex).toBe(link.index);
  })
 
+ it("should fetch user",()=>{
+  
+   component.fetchUser();
+   authService.getUserObservable().subscribe(
+     (user)=>{
+       expect(user).toEqual({email:'abc@gmail.com',password:'123456'});
+     }
+   )
+
+   expect(component.isAuthenticated).toBeTruthy();
+
+   
+
+ })
 //  it("should fetch active index",()=>{
 //    expect(activeIndexSpy.calls.any()).toBe(true,'activeindex spy');
 //    expect(component.activeLinkIndex).toBe(1);
